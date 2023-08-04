@@ -16,9 +16,12 @@ function App() {
   }
 
   useEffect(() => {
-    fetch("https://meme-api.com/gimme")
-      .then(res => res.json())
-      .then(data => setMemes(data))
+    async function getMemes(){
+      const res = await fetch("https://meme-api.com/gimme");
+      const data = await res.json();
+      setMemes(data);
+    }
+    getMemes();
   }, [meme]);
 
   function getMeme() {
